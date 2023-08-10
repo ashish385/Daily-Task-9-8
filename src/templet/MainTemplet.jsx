@@ -6,13 +6,13 @@ const MainTemplet = () => {
       <main className=" w-full  bg-cover justify-center  rounded-l-xl">
         <div className=" flex flex-col items-center  px-[1rem] py-12">
           <div className="max-w-md flex flex-col items-center justify-center">
-            <div className="text-3xl flex items-center justify-center text-center overflow-y-hidden overflow-x-hidden font-bold">
+            <div className=" flex items-center justify-center text-center overflow-y-hidden overflow-x-hidden font-bold">
               <img
                 className="w-12 inline-block mr-2 rounded-full"
                 src="https://tailwind-dashboard-template-dashwind.vercel.app/logo192.png"
                 alt=""
               />
-              <h1 >DashWind</h1>
+              <h1 className='text-3xl' >DashWind</h1>
             </div>
             <div className="text-center mt-12">
               <img

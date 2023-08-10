@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MainTemplet from "../templet/MainTemplet";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
 
@@ -11,14 +12,21 @@ const Login = () => {
 
   const [formdata, setFormdata] = useState(initialVAlue);
 
+  
+
   function handlechange(e) {
     const { name, value } = e.target;
     setFormdata({ ...formdata, [name]: value });
+    
   }
 
   async function handleSubmit(event) {
     event.preventDefault();
+    if (!formdata.email || !formdata.password) {
+      return toast.error("All field required!")
+    }
     console.log(formdata);
+    toast.success("Login Successfully!");
 
   }
 
@@ -81,7 +89,7 @@ const Login = () => {
                     >
                       Forgot Password?
                     </Link>
-
+                      
                     <button className="border py-3 rounded-xl text-lg bg-blue-600 hover:bg-blue-800 text-gray-300">
                       Login
                     </button>
