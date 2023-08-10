@@ -1,8 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import MainTemplet from '../templet/MainTemplet';
 
 const ForgotPassword = () => {
+   const initialVAlue = {
+     email: "",
+
+   };
+
+   const [formdata, setFormdata] = useState(initialVAlue);
+
+   function handlechange(e) {
+     const { name, value } = e.target;
+     setFormdata({ ...formdata, [name]: value });
+     //  console.log(formdata);
+   }
+   console.log(formdata);
+
+   async function handleSubmit(event) {
+     event.preventDefault();
+     console.log(formdata);
+   }
   return (
     <>
       <div className="h-screen bg-slate-100 ">
@@ -19,7 +37,7 @@ const ForgotPassword = () => {
                 <p className="text-center font-semibold">
                   We will send password reset link on your email Id
                 </p>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="flex flex-col gap-5 mt-4">
                     <label className=" flex flex-col gap-1">
                       <span className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm md:text-md font-medium text-slate-700">
@@ -28,15 +46,19 @@ const ForgotPassword = () => {
                       <input
                         type="email"
                         name="email"
-                        className=" w-full h-[3rem]  mt-1 px-3 py-4 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none block font-medium   focus:ring-gray-300  rounded-md sm:text-sm focus:ring-1 hover:border-2 "
+                        value={formdata?.email}
+                        onChange={handlechange}
+                        className="peer ...  w-full h-[3rem]  mt-1 px-3 py-4 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:bg-gray-100 block font-medium   focus:ring-gray-300  rounded-md sm:text-sm focus:ring-1 hover:border-2  "
                         placeholder="you@example.com"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                       />
+                      <p className="mt-1 pl-2 invisible peer-invalid:visible text-pink-600 text-sm">
+                        Please provide a valid email address.
+                      </p>
                     </label>
-                    <p className="text-center mt-5 text-red-500">
-                      Email Id is required! (use any value)
-                    </p>
+
                     <button className="border py-3 rounded-xl text-lg bg-blue-600 hover:bg-blue-800 text-gray-300">
-                      Login
+                      Send Reset Link
                     </button>
                     <p className="text-center ">
                       Don't have an account yet?{" "}
