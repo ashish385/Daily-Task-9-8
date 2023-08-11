@@ -26,7 +26,12 @@ const Login = () => {
       return toast.error("All field required!")
     }
     console.log(formdata);
+    const userData = window.localStorage.getItem("userData");
+    if (!userData) {
+     return toast.error("user not found!");
+    }
     toast.success("Login Successfully!");
+    setFormdata(initialVAlue);
 
   }
 

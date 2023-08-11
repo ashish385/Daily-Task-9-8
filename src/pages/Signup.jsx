@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import MainTemplet from '../templet/MainTemplet';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const Signup = () => {
 
@@ -22,7 +23,13 @@ const Signup = () => {
 
    async function handleSubmit(event) {
      event.preventDefault();
+     if (!formdata.name && !formdata.email && !formdata.password) {
+       return toast.error("All field required!");
+     }
      console.log(formdata);
+     window.localStorage.setItem("userData", JSON.stringify(formdata));
+     toast.success("Signup Successfully!");
+     setFormdata(initialVAlue);
    }
   return (
     <>
